@@ -41,4 +41,12 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m pytest -q
+          mkdir -p reports
+          # Run pytest, save concise stdout and JUnit XML for CI
+          python -m pytest -q --junitxml=reports/junit.xml | tee reports/result.txt
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/
