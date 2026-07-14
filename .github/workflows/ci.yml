@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -25,12 +26,18 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          set -eux
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install -r requirements.txt
+          for i in 1 2 3; do
+            python -m pip install -r requirements.txt && break || sleep 10
+          done
 
       - name: Install Playwright system deps and browsers
         run: |
-          python -m playwright install --with-deps
+          set -eux
+          for i in 1 2 3; do
+            python -m playwright install --with-deps && break || sleep 10
+          done
 
       - name: Run tests
         run: |
