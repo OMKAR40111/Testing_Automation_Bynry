@@ -1,3 +1,5 @@
+[![CI](https://github.com/OMKAR40111/Testing_Automation_Bynry/actions/workflows/ci.yml/badge.svg)](https://github.com/OMKAR40111/Testing_Automation_Bynry/actions/workflows/ci.yml)
+
 # Project
 
 This project is a small test framework that uses Playwright and pytest to run browser tests.
