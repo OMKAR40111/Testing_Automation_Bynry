@@ -28,10 +28,9 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r requirements.txt
 
-      - name: Set up Playwright (install deps & browsers)
-        uses: microsoft/playwright-github-action@v1
-        with:
-          browsers: chromium,firefox,webkit
+      - name: Install Playwright system deps and browsers
+        run: |
+          python -m playwright install --with-deps
 
       - name: Run tests
         run: |
